@@ -1,7 +1,7 @@
-const fs = require('fs');
+const fs = require("fs");
 
 // Ruta del archivo de notas
-const filePath = './notas.json';
+const filePath = "./notas.json";
 
 /**
  * Agrega una nueva nota al archivo.
@@ -12,7 +12,7 @@ function agregarNota(titulo, contenido) {
   let notas = [];
   if (fs.existsSync(filePath)) {
     // Leer las notas existentes
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = fs.readFileSync(filePath, "utf8");
     notas = JSON.parse(data);
   }
 
@@ -21,7 +21,7 @@ function agregarNota(titulo, contenido) {
 
   // Guardar las notas actualizadas en el archivo
   fs.writeFileSync(filePath, JSON.stringify(notas, null, 2));
-  console.log('Nota agregada con éxito.');
+  console.log("Nota agregada con éxito.");
 }
 
 /**
@@ -29,15 +29,15 @@ function agregarNota(titulo, contenido) {
  */
 function listarNotas() {
   if (fs.existsSync(filePath)) {
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = fs.readFileSync(filePath, "utf8");
     const notas = JSON.parse(data);
 
-    console.log('Notas guardadas:');
+    console.log("Notas guardadas:");
     notas.forEach((nota, index) => {
       console.log(`${index + 1}. ${nota.titulo}: ${nota.contenido}`);
     });
   } else {
-    console.log('No hay notas guardadas.');
+    console.log("No hay notas guardadas.");
   }
 }
 
@@ -47,7 +47,7 @@ function listarNotas() {
  */
 function eliminarNota(titulo) {
   if (fs.existsSync(filePath)) {
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = fs.readFileSync(filePath, "utf8");
     let notas = JSON.parse(data);
 
     // Filtrar las notas y eliminar la que coincida con el título
@@ -56,11 +56,16 @@ function eliminarNota(titulo) {
     fs.writeFileSync(filePath, JSON.stringify(notasRestantes, null, 2));
     console.log(`Nota con título "${titulo}" eliminada.`);
   } else {
-    console.log('No hay notas para eliminar.');
+    console.log("No hay notas para eliminar.");
   }
 }
 
 // Ejecución de ejemplo
-agregarNota('Compras', 'Comprar leche y pan.');
+console.log("Agregar una nota");
+
+agregarNota("Compras", "Comprar leche y pan.");
+
+console.log("Agregan una nota");
+
 listarNotas();
-eliminarNota('Compras');
+//eliminarNota("Compras");
